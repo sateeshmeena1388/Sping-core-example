@@ -1,0 +1,16 @@
+package com.nt.cfgs;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
+import com.arjuna.common.logging.commonI18NLogger;
+
+@SpringBootApplication
+@ComponentScan(basePackages={"com.nt.service","com.nt.dao"})
+public class SpringBootDao1Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringBootDao1Application.class, args);
+	}
+}

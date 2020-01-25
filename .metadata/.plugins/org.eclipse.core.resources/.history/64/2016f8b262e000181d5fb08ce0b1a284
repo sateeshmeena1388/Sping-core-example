@@ -1,0 +1,27 @@
+package com.nt.service;
+
+import javax.annotation.Resource;
+import javax.inject.Named;
+
+import com.nt.dao.EmpDao;
+
+@Named("empService")
+public final class EmpServiceImpl implements EmpService {
+    
+	@Resource
+	private EmpDao dao;
+	@Override
+	public int findEmpcount() {
+		int count=0;
+		count=dao.getEmpCount();
+		// TODO Auto-generated method stub
+		return count;
+	}
+
+	@Override
+	public List<EmployeeDTO> findEmployeeByDesg(String desg) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

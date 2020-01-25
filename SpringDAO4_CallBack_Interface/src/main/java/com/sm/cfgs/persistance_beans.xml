@@ -1,0 +1,26 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- <bean id="jofb" class="org.springframework.jndi.JndiObjectFactoryBean">
+<property name="jndiName" value="java:comp/env/jdbc/DsJndi"/>
+</bean> -->
+
+<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+<property name="driverClass" value="oracle.jdbc.OracleDriver"/>
+<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+<property name="user" value="scott"/>
+<property name="password" value="tiger"/>
+<property name="initialPoolSize" value="10"/>
+<property name="maxPoolSize" value="20"/>
+</bean>
+<bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
+<property name="dataSource" ref="dataSource"/>
+</bean>
+<bean id="dao" class="com.sm.dao.EmployeeDAOImple">
+<property name="jt" ref="template"/>
+</bean>
+
+</beans>

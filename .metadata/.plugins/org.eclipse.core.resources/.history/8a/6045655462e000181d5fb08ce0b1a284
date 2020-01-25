@@ -1,0 +1,20 @@
+package com.nt.service;
+
+import javax.inject.Named;
+
+@Named("empService")
+public final class EmpServiceImpl implements EmpService {
+
+	@Override
+	public int findEmpcount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<EmployeeDTO> findEmployeeByDesg(String desg) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

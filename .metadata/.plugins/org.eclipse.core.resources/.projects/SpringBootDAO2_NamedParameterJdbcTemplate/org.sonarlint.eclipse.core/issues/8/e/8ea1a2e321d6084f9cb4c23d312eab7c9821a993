@@ -1,0 +1,7 @@
+
+‹squid:S00115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(°Ïé«HRCRITICALZ
+CODE_SMELL
+‹squid:S2293'"YReplace the type specification in this constructor call with the diamond operator ("<>").(æø¾ÄşÿÿÿÿH½RMINORZ
+CODE_SMELL
+squid:UselessImportCheck"GRemove this unused import 'org.springframework.jdbc.core.JdbcTemplate'.(å ê‹ÿÿÿÿÿ8ü¬¡ƒî,H¨RMINORZ
+CODE_SMELL

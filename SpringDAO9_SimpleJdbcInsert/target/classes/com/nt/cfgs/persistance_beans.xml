@@ -1,0 +1,34 @@
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- <bean id="jofb" class="org.springframework.jndi.JndiObjectFactoryBean">
+<property name="jndiName" value="java:comp/env/jdbc/DsJndi"/>
+</bean> -->
+
+<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+<property name="driverClass" value="oracle.jdbc.OracleDriver"/>
+<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+<property name="user" value="scott"/>
+<property name="password" value="tiger"/>
+<property name="initialPoolSize" value="10"/>
+<property name="maxPoolSize" value="20"/>
+</bean>
+
+<!-- <bean id="dbcpDs"  class="org.apache.commons.dbcp2.BasicDataSource">
+     <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+     <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+     <property name="username" value="system"/>
+     <property name="password" value="manager"/>
+  </bean> -->
+
+<bean id="template" class="org.springframework.jdbc.core.simple.SimpleJdbcInsert">
+<constructor-arg ref="dataSource"/>
+</bean>
+<bean id="dao" class="com.nt.dao.EmpDAO">
+<property name="sjt" ref="template"/>
+</bean>
+
+</beans>

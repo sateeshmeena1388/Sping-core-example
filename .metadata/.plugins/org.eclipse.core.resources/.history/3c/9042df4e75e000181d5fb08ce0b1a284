@@ -1,0 +1,21 @@
+package com.nt.service;
+
+import javax.annotation.Resource;
+import javax.inject.Named;
+
+import com.nt.dao.StudentDAO;
+import com.nt.dto.StudentDTO;
+@Named("stService")
+public class StudentServiceImpl implements StudentService {
+
+	@Resource
+	private StudentDAO dao;
+	
+	@Override
+	public String register(StudentDTO dto) {
+		// TODO Auto-generated method stub
+		
+		return null+"";
+	}
+
+}

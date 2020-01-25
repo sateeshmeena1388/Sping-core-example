@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="SpringHello"/>
+<aop-project name="SpringBootDAO1"/>
+<aop-project name="SpringBootDAO2_NamedParameterJdbcTemplate"/>
+<aop-project name="SpringBootDAO3_SimpleJdbcTemplate"/>
+</aop-reference-model>

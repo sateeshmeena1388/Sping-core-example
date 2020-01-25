@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;com.sm.test.DaoDbTest.java&apos; to &apos;DaoDbTests.java&apos;&#x0D;&#x0A;- Original project: &apos;SpringDAO1&apos;&#x0D;&#x0A;- Original element: &apos;com.sm.test.DaoDbTest.java&apos;&#x0D;&#x0A;- Renamed element: &apos;com.sm.test.DaoDbTests.java&apos;" description="Rename compilation unit &apos;DaoDbTest.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src\/main\/java&lt;com.sm.test{DaoDbTest.java" name="DaoDbTests.java" references="false" stamp="1540149583523" version="1.0"/>
+</session>

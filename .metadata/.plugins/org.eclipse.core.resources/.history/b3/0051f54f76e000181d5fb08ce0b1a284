@@ -1,0 +1,14 @@
+package com.nt.test;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
+@SpringBootApplication
+@ComponentScan(basePackages={"com.nt.dao","com.nt.service"})
+public class SpringBootDao3SimpleJdbcTemplateApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringBootDao3SimpleJdbcTemplateApplication.class, args);
+	}
+}

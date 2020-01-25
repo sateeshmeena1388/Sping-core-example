@@ -1,0 +1,13 @@
+package com.nt.service;
+
+import com.nt.dto.StudentDTO;
+
+public class StudentServiceImpl implements StudentService {
+
+	@Override
+	public String register(StudentDTO dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

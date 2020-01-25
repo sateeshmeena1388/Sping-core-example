@@ -1,0 +1,12 @@
+package com.nt.dao;
+
+import com.nt.bo.StudentBO;
+
+public class StudentDAOImpl implements StudentDAO {
+
+	public String insert(StudentBO bo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
