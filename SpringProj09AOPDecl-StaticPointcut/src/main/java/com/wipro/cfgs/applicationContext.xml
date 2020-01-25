@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="targetBean" class="com.wipro.service.AirthMeticService"/>
+<bean id="check" class="com.wipro.aspect.PerformanceMonitoringAdvice"/>
+<bean id="pmAvisor" class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+<property name="mappedNames">
+<list>
+<value>sum</value>
+<value>sub</value>
+</list>
+</property>
+<property name="advice" ref="check"/>
+</bean>
+<bean id="pfb" class="org.springframework.aop.framework.ProxyFactoryBean">
+<property name="target" ref="targetBean"/>
+<property name="interceptorNames">
+<list>
+<value>check</value>
+</list>
+</property>
+</bean>
+</beans>

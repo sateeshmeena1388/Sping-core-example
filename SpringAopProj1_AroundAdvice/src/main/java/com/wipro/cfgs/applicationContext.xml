@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean id="target" class="com.wipro.service.IntrAmtCalCulator"/>
+<bean id="cacheAdvice" class="com.wipro.aspect.CacheAdvice"/>
+<bean id="pmAdvice" class="com.wipro.aspect.PerfomanceMonitoringAdvice"/>
+<bean id="logAdvice" class="com.wipro.aspect.LogAroundAdvice"/>
+<bean id="pfb" class="org.springframework.aop.framework.ProxyFactoryBean">
+<property name="target" ref="target"/>
+<property name="interceptorNames">
+<list>
+<value>cacheAdvice</value>
+<value>logAdvice</value>
+<value>pmAdvice</value>
+</list>
+</property>
+
+</bean>
+
+</beans>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<bean id="target" class="com.wipro.service.IntrAmtCalculator"/>
+<bean id="cacheAdvice" class="com.wipro.aspect.CacheAdvice"/>
+<bean id="pmAdvice" class="com.wipro.aspect.PerformanceMonitoringAdvice"/>
+<bean id="logAdvice" class="com.wipro.aspect.LogAroundAdvice"/>
+<!-- space must there like  * com... -->
+<aop:config>
+<!--<aop:pointcut id="ptc1" expression="execution(* com.wipro.service.*.*(..))" />  -->
+<aop:pointcut id="ptc1" expression="execution(* com.wipro.service.IntrAmtCalculator.*.*(..))" />
+<!-- <aop:pointcut id="ptc1" expression="execution(* com.wipro.service.IntrAmtCalculator.*(..))" /> -->
+<aop:pointcut id="ptc2" expression="execution(* com.wipro.service.IntrAmtCalculator.compoundIntrAmt*(..))"/>
+<aop:aspect id="logAspect" order="3" ref="logAdvice">
+<aop:around pointcut-ref="ptc1" method="logging"/>
+</aop:aspect>
+<aop:aspect id="cacheAspect" order="1" ref="cacheAdvice">
+<aop:around pointcut-ref="ptc2" method="caching"/>
+</aop:aspect>
+<aop:aspect id="pmAspect" order="2"  ref="pmAdvice">
+<aop:around pointcut-ref="ptc1" method="pMonitoring"/>
+</aop:aspect>
+</aop:config>
+
+
+</beans>

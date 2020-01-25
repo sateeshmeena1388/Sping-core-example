@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<bean id="target" class="com.wipro.service.OrderApprover"/>
+<bean id="auditAdvice" class="com.wipro.aspect.AuditingAdvice"/>
+<!-- space must there like  * com... -->
+<aop:config>
+<aop:pointcut id="ptc1" expression="execution(* com.wipro.service.OrderApprover.*(..)) and args(oid)" /> 
+
+<!-- <aop:pointcut id="ptc1" expression="execution(* com.wipro.service.*.*(..))and args(oid)" /> -->
+<!-- <aop:pointcut id="ptc1" expression="execution(* com.wipro.service.IntrAmtCalculator.*(..))" /> -->
+
+<aop:aspect id="auditAspect" ref="auditAdvice">
+<aop:before method="audit" pointcut-ref="ptc1"/>
+</aop:aspect>
+</aop:config>
+</beans>
