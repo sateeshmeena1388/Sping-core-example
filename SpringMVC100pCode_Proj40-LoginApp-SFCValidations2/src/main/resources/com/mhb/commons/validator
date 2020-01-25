@@ -1,0 +1,6 @@
+#Annotationname.cmd name.property name=message
+NotEmpty.userCmd.user=User name is required
+NotEmpty.userCmd.pwd=password is required
+Size.userCmd.pwd=password must have min 4 chars 
+typeMismatch.age=age must be numeric value
+Range.userCmd.age=Age must be in the range 1 to 100

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans.xsd">
+   
+   
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="home.htm">pvc</prop>
+
+				<prop key="studLists.htm">lsc</prop>
+				<prop key="edit_student.htm">esc</prop>
+				<prop key="delete_student.htm">dsc</prop>
+				<prop key="insert_students.htm">isc</prop>
+			</props>
+		</property>
+	</bean>
+<bean id="stValidator" class="com.mhb.validator.StudentValidator"/>
+	<!-- Cfg parameterized controller -->
+	<bean id="pvc"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="home"/>
+	</bean>
+	<bean id="esc" class="com.mhb.controller.EditStudentController">
+	<property name="service" ref="stService"/>
+	<property name="formView" value="edit_student"/>
+	<property name="commandName" value="stCmd"/>
+	<property name="commandClass" value="com.mhb.command.StudentCommand"/>
+	<property name="validator" ref="stValidator"/>
+	</bean>
+	<bean id="isc" class="com.mhb.controller.InsertStudentController">
+	<property name="service" ref="stService"/>
+	<property name="formView" value="insert_students"/>
+	<property name="commandName" value="stCmd"/>
+	<property name="sessionForm" value="true"/>
+	<property name="commandClass" value="com.mhb.command.StudentCommand"/>
+	<property name="validator" ref="stValidator"/>
+	
+	</bean>
+	<bean id="dsc" class="com.mhb.controller.DeleteStudentController">
+	
+	<property name="service" ref="stService"/>
+	<property name="formView" value="delete_student"/>
+	<property name="commandName" value="stCmd"/>
+	<property name="commandClass" value="com.mhb.command.StudentCommand"/>
+	</bean>
+	<!-- cfg controller class cfg -->
+	<bean id="lsc" class="com.mhb.controller.ListStudentController">
+		<property name="studentService" ref="stService"/>
+	</bean>
+	<bean id="resourceBundleMessageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	<property name="basename" value="com/mhb/common/StudentComandValidator.properties"/>
+	</bean>
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp"></property>
+
+	</bean>
+</beans>

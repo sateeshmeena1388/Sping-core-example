@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="reader" class="com.mhb.batch.CustomItemReader">
+		<property name="bookNameList">
+			<list>
+				<value>Core Java</value>
+				<value>Design Patterns</value>
+				<value>Advance Java</value>
+				<value>Spring FrameWork</value>
+				<value>Hibernate Framework</value>
+			</list>
+		</property>
+	</bean>
+	<!-- processor -->
+	<bean id="processor" class="com.mhb.batch.CustomProcessor" />
+	<!-- writer -->
+	<bean id="writer" class="com.mhb.batch.CustomWriter" />
+
+	<!-- JobRepository and JobLauncher are configuration/setup classes -->
+	<bean id="jobRepository"
+		class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean" />
+
+	<bean id="jobLauncher"
+		class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<property name="jobRepository" ref="jobRepository" />
+	</bean>
+
+	<!-- Step will need a transaction manager -->
+	<bean id="txMgmr"
+		class="org.springframework.batch.support.transaction.ResourcelessTransactionManager" />
+
+	<!-- Actual Job -->
+	<batch:job id="booksJob">
+		<batch:step id="step1">
+			<batch:tasklet transaction-manager="txMgmr">
+				<batch:chunk reader="reader" writer="writer" processor="processor"
+					commit-interval="1" />
+			</batch:tasklet>
+		</batch:step>
+	</batch:job>
+
+</beans>

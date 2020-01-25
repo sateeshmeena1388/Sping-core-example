@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+<!-- controller classes -->
+
+
+<bean id="pvc" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+<property name="viewName" value="search_emps"/>
+</bean>
+
+<bean id="stc" class="com.mhb.controller.StudentController">
+<property name="commandClass" value="com.mhb.command.StudentCommand"/>
+<property name="service" ref="stService"/>
+<property name="formView" value="student"/>
+<property name="successView" value="result"/>
+<property name="commandName" value="stCmd"/>
+</bean>
+
+
+<!-- Handler mapping -->
+<bean id="suhm" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+<property name="mappings">
+<props>
+
+<prop key="home.htm">stc</prop>
+</props>
+</property>
+</bean>
+
+
+<!--View Resolver  -->
+<bean id="ivr" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<property name="prefix" value="/WEB-INF/pages/"/>
+<property name="suffix" value=".jsp"/>
+</bean>
+</beans>

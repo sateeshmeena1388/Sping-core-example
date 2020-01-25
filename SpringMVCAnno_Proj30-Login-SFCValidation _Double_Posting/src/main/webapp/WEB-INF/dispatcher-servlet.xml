@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+<mvc:interceptors>
+<mvc:interceptor>
+<mvc:mapping path="/login.htm"/>
+<ref bean="dpi"/>
+</mvc:interceptor>
+</mvc:interceptors>
+
+<bean id="dpi" class="com.mhb.handler.DoublePostingHandler"/>
+<!-- <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"></bean> -->
+
+<!-- View Resolvers -->
+   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+     <property name="prefix" value="/WEB-INF/pages/"/>
+     <property name="suffix" value=".jsp"/>
+   </bean>
+   <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+   <property name="basename" value="com/mhb/commons/validator"/>
+   </bean>
+   
+   
+   <context:component-scan base-package="com.mhb.controller,com.mhb.command"/>
+   <mvc:annotation-driven/>
+   
+</beans>

@@ -1,0 +1,17 @@
+SQL> select * from users;
+
+UNAME(PK)             PWD                      STATUS
+admin	              admin	                         1
+user	               user	                         1
+satish	              arti	                         1
+gautam                 gambhir                       1
+ram	                   seeta                         1
+
+SQL> select * from users_roles;
+
+ROLE_ID UNAME(FK)     ROLE
+admin	           ROLE_ADMIN
+user	         ROLE_FAMILY_MEMBER
+satish	             ROLE_OWNER
+gautam             	ROLE_OWNER
+ram	                 ROLE_OWNER

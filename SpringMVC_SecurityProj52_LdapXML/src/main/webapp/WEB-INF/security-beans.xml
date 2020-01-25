@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+ <security:http use-expressions="true">
+   <security:intercept-url pattern="/home.htm" access="permitAll"/>
+   <security:intercept-url pattern="/list_orders.htm" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')"/>
+   <security:form-login/>
+   <security:access-denied-handler error-page="/error.jsp"/>
+   <security:logout logout-success-url="/home.htm"/>   
+ </security:http>
+  
+  <security:authentication-manager>
+  <!--   <security:authentication-provider>
+      <security:user-service>
+        <security:user name="raja" password="rani" authorities="ROLE_CUSTOMER"/>
+        <security:user name="rani" password="rani" authorities="ROLE_AGENT"/>
+        <security:user name="mahesh" password="mahesh" authorities="ROLE_VISITOR"/>                
+      </security:user-service>
+    
+    </security:authentication-provider>
+   -->
+   <!--  for proeprties file 
+   <security:authentication-provider>
+      <security:user-service properties="classpath:com/nt/commons/security.properties"/>
+   </security:authentication-provider>
+  </security:authentication-manager> -->
+  
+  <!--  For DB s/w -->
+ <!--  <security:authentication-provider>
+    	<security:jdbc-user-service	   data-source-ref="jofb"
+		  users-by-username-query="select uname,pwd,status from users where uname=?"
+		  authorities-by-username-query="select uname,role from users_roles where uname=?" />
+	
+  </security:authentication-provider> -->
+ 
+ 	<security:ldap-authentication-provider
+			user-search-filter="(uid={0})" user-search-base="ou=users"
+			group-search-filter="(uniqueMember={0})" group-search-base="ou=groups"
+			group-role-attribute="cn" role-prefix="ROLE_">
+		</security:ldap-authentication-provider>
+	</security:authentication-manager>
+	
+	
+	<security:ldap-server url="ldap://localhost:10389/o=mojo"
+		manager-dn="uid=admin,ou=system" manager-password="secret" />
+ 
+ 
+  
+</beans>

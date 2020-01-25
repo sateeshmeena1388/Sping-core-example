@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+
+<!-- controller classes -->
+<bean id="ws" class="com.mhb.controller.WishCotroller">
+<property name="service" ref="wishService"/>
+</bean>
+<bean id="pvc1" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+<property name="viewName" value="welcome"/>
+</bean>
+<bean id="pvc2" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+<property name="viewName" value="about_us"/>
+</bean>
+<bean id="pvc3" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+<property name="viewName" value="contact_us"></property>
+</bean>
+
+<!-- Handler mapping -->
+<bean id="suhm" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+<property name="mappings">
+<props>
+<prop key="home.htm">pvc1</prop>
+<prop key="wish.htm">ws</prop>
+<prop key="aboutus.htm">pvc2</prop>
+<prop key="contactus.htm">pvc3</prop>
+</props>
+</property>
+</bean>
+<!--View Resolver  -->
+<bean id="ivr" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<property name="prefix" value="/WEB-INF/pages/"/>
+<property name="suffix" value=".jsp"/>
+</bean>
+</beans>
